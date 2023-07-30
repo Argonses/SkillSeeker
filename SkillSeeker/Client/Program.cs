@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using SkillSeeker.Client;
+using SkillSeeker.Client.Services.CourseService;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -12,6 +13,7 @@ builder.Services.AddHttpClient("SkillSeeker.ServerAPI", client => client.BaseAdd
 
 // Supply HttpClient instances that include access tokens when making requests to the server project
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("SkillSeeker.ServerAPI"));
+builder.Services.AddScoped<ICourseService, CourseService>();
 
 builder.Services.AddApiAuthorization();
 

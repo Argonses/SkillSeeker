@@ -1,0 +1,77 @@
+﻿@page "/coursesPage"
+@inject HttpClient http
+
+<h3>Courses Page</h3>
+
+<div class="row">
+    @if (Courses != null && Courses.Any())
+    {
+        @foreach (var course in Courses.Take(9)) 
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Course Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@course.Name</h5>
+                        <p class="card-text">@course.Description</p>
+                        <a href="#" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No courses found.</p>
+    }
+</div>
+
+<style>
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .col-md-4 {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+        padding: 10px;
+    }
+
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+    }
+</style>
+
+@code {
+    List<Course>? Courses = new List<Course>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Courses = await http.GetFromJsonAsync<List<Course>>("api/Courses");
+    }
+}

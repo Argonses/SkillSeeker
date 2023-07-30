@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkillSeeker.Server.Data;
 
@@ -11,9 +12,11 @@ using SkillSeeker.Server.Data;
 namespace SkillSeeker.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230730153730_InitialConnection")]
+    partial class InitialConnection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -406,10 +409,6 @@ namespace SkillSeeker.Server.Data.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Instructor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -431,134 +430,6 @@ namespace SkillSeeker.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Courses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Capacity = 50,
-                            Category = "Programming",
-                            Description = "Learn the basics of programming with this introductory course.",
-                            EndDate = new DateTime(2023, 9, 10, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5625),
-                            ImageUrl = "https://via.placeholder.com/300",
-                            Instructor = "John Smith",
-                            Location = "Online",
-                            Name = "Introduction to Programming",
-                            Price = 99.99m,
-                            StartDate = new DateTime(2023, 8, 13, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5570)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Capacity = 30,
-                            Category = "Marketing",
-                            Description = "Discover the world of digital marketing and its key concepts.",
-                            EndDate = new DateTime(2023, 9, 3, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5631),
-                            ImageUrl = "https://via.placeholder.com/300",
-                            Instructor = "Emily Johnson",
-                            Location = "Online",
-                            Name = "Digital Marketing Fundamentals",
-                            Price = 79.99m,
-                            StartDate = new DateTime(2023, 8, 6, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5630)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Capacity = 20,
-                            Category = "Photography",
-                            Description = "Take stunning photos with this comprehensive photography course.",
-                            EndDate = new DateTime(2023, 10, 1, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5635),
-                            ImageUrl = "https://via.placeholder.com/300",
-                            Instructor = "Michael Williams",
-                            Location = "In-Person",
-                            Name = "Photography Masterclass",
-                            Price = 149.99m,
-                            StartDate = new DateTime(2023, 8, 20, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5634)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Capacity = 40,
-                            Category = "Finance",
-                            Description = "Learn how to manage your finances and create a budget.",
-                            EndDate = new DateTime(2023, 8, 27, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5639),
-                            ImageUrl = "https://via.placeholder.com/300",
-                            Instructor = "Sarah Lee",
-                            Location = "Online",
-                            Name = "Financial Planning and Budgeting",
-                            Price = 89.99m,
-                            StartDate = new DateTime(2023, 8, 9, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5638)
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Capacity = 15,
-                            Category = "Cooking",
-                            Description = "Start your culinary journey with this cooking basics course.",
-                            EndDate = new DateTime(2023, 9, 10, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5643),
-                            ImageUrl = "https://via.placeholder.com/300",
-                            Instructor = "Chef James",
-                            Location = "In-Person",
-                            Name = "Cooking Basics for Beginners",
-                            Price = 129.99m,
-                            StartDate = new DateTime(2023, 8, 13, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5641)
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Capacity = 25,
-                            Category = "Health",
-                            Description = "Improve your fitness and well-being with this holistic course.",
-                            EndDate = new DateTime(2023, 9, 3, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5646),
-                            ImageUrl = "https://via.placeholder.com/300",
-                            Instructor = "Emma Davis",
-                            Location = "Online",
-                            Name = "Fitness and Wellness",
-                            Price = 69.99m,
-                            StartDate = new DateTime(2023, 8, 6, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5645)
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Capacity = 20,
-                            Category = "Design",
-                            Description = "Get started with graphic design and create stunning visuals.",
-                            EndDate = new DateTime(2023, 10, 1, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5650),
-                            ImageUrl = "https://via.placeholder.com/300",
-                            Instructor = "David Taylor",
-                            Location = "In-Person",
-                            Name = "Graphic Design Essentials",
-                            Price = 149.99m,
-                            StartDate = new DateTime(2023, 8, 20, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5648)
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Capacity = 30,
-                            Category = "Writing",
-                            Description = "Unleash your creativity and learn the art of writing fiction.",
-                            EndDate = new DateTime(2023, 8, 27, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5653),
-                            ImageUrl = "https://via.placeholder.com/300",
-                            Instructor = "Olivia Roberts",
-                            Location = "Online",
-                            Name = "Writing Fiction: Creative Storytelling",
-                            Price = 79.99m,
-                            StartDate = new DateTime(2023, 8, 9, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5652)
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Capacity = 25,
-                            Category = "Communication",
-                            Description = "Overcome your fear of public speaking and become a confident speaker.",
-                            EndDate = new DateTime(2023, 9, 10, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5657),
-                            ImageUrl = "https://via.placeholder.com/300",
-                            Instructor = "Robert Anderson",
-                            Location = "In-Person",
-                            Name = "Public Speaking Mastery",
-                            Price = 129.99m,
-                            StartDate = new DateTime(2023, 8, 13, 17, 51, 20, 528, DateTimeKind.Local).AddTicks(5655)
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

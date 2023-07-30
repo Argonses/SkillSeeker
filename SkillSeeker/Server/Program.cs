@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using SkillSeeker.Server.Data;
 using SkillSeeker.Server.Models;
+using Microsoft.AspNetCore.Identity;
+using SkillSeeker.Server.Services.CourseService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +25,7 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<ICourseService, CourseService>();
 
 var app = builder.Build();
 
@@ -48,7 +51,7 @@ app.UseRouting();
 
 app.UseIdentityServer();
 app.UseAuthorization();
-
+app.UseAuthentication();
 
 app.MapRazorPages();
 app.MapControllers();

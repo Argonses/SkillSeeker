@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillSeeker.Server", "SkillSeeker\Server\SkillSeeker.Server.csproj", "{DBD802F7-297B-4443-BFCB-5EFBB4698247}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSeeker.Server", "SkillSeeker\Server\SkillSeeker.Server.csproj", "{DBD802F7-297B-4443-BFCB-5EFBB4698247}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillSeeker.Client", "SkillSeeker\Client\SkillSeeker.Client.csproj", "{E2B5C6B0-B0AA-4AB3-BBD7-86DFEAC0922B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSeeker.Client", "SkillSeeker\Client\SkillSeeker.Client.csproj", "{E2B5C6B0-B0AA-4AB3-BBD7-86DFEAC0922B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillSeeker.Shared", "SkillSeeker\Shared\SkillSeeker.Shared.csproj", "{FA427AEB-2829-4F34-AB75-327A88B75CF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSeeker.Shared", "SkillSeeker\Shared\SkillSeeker.Shared.csproj", "{FA427AEB-2829-4F34-AB75-327A88B75CF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
