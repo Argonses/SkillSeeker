@@ -19,6 +19,7 @@ namespace SkillSeeker.Server.Data
         }
 
         public DbSet<Course> Courses { get; set; }
+        public DbSet<OrderedCourse> OrderedCourses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

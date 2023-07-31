@@ -5,6 +5,7 @@ using SkillSeeker.Server.Data;
 using SkillSeeker.Server.Models;
 using Microsoft.AspNetCore.Identity;
 using SkillSeeker.Server.Services.CourseService;
+using SkillSeeker.Server.Services.OrderedCourseService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,7 @@ builder.Services.AddAuthentication()
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<IOrderedCourseService, OrderedCourseService>();
 
 var app = builder.Build();
 
