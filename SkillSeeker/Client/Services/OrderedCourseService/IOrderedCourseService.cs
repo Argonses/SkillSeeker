@@ -6,5 +6,6 @@ namespace SkillSeeker.Client.Services.OrderedCourseService
     {
         List<OrderedCourse> OrderedCourses { get; set; }
         Task GetAllOrderedCourses();
+        Task LeaveCourse(int id);
     }
 }

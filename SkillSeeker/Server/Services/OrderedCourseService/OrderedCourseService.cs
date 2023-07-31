@@ -24,5 +24,17 @@ namespace SkillSeeker.Server.Services.OrderedCourseService
         {
            return await _context.OrderedCourses.ToListAsync();
         }
+
+        public async Task LeaveCourse(int id)
+        {
+            var course = await _context.OrderedCourses.FindAsync(id);
+            if (course == null)
+            {
+                throw new Exception("Course is null!");
+            }
+
+            _context.OrderedCourses.Remove(course);
+            await _context.SaveChangesAsync();
+        }
     }
 }

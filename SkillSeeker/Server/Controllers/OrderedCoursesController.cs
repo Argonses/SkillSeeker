@@ -28,5 +28,11 @@ namespace SkillSeeker.Server.Controllers
         {
             return await _service.AddCourse(course);
         }
+
+        [HttpDelete("{id}")]
+        public async Task LeaveCourse(int id)
+        {
+            await _service.LeaveCourse(id);
+        }
     }
 }

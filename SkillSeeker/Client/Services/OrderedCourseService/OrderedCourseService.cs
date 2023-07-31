@@ -18,5 +18,10 @@ namespace SkillSeeker.Client.Services.OrderedCourseService
         {
             OrderedCourses = await _http.GetFromJsonAsync<List<OrderedCourse>>("api/OrderedCourses");
         }
+
+        public async Task LeaveCourse(int id)
+        {
+            await _http.DeleteAsync($"api/OrderedCourses/{id}");
+        }
     }
 }
