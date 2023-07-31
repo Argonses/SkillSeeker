@@ -14,6 +14,12 @@ namespace SkillSeeker.Client.Services.CourseService
 
         public List<Course> Courses { get; set; } = new List<Course>();
 
+        public async Task<Course> GetCourseById(int id)
+        {
+            var result = await _http.GetFromJsonAsync<Course>($"api/Courses/{id}");
+            return result;
+        }
+
         public async Task GetCourses()
         {
             Courses = await _http.GetFromJsonAsync<List<Course>>("api/Courses");

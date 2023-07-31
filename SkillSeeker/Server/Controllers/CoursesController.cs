@@ -23,5 +23,11 @@ namespace SkillSeeker.Server.Controllers
         {
             return await _service.GetCourses();
         }
+
+        [HttpGet("{id}")]
+        public async Task<Course> GetCourseById(int id)
+        {
+            return await _service.GetCourseById(id);
+        }
     }
 }

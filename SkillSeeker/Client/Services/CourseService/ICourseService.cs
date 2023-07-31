@@ -6,5 +6,6 @@ namespace SkillSeeker.Client.Services.CourseService
     {
         List<Course> Courses { get; set; }
         Task GetCourses();
+        Task<Course> GetCourseById(int id);
     }
 }

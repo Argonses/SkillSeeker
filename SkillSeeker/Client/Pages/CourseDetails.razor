@@ -1,0 +1,45 @@
+﻿@page "/course/{id:int}"
+@inject ICourseService CourseService
+
+<link href="/css/CourseStyles.css" rel="stylesheet" />
+
+<h3 style="text-align:center">CourseDetails</h3>
+
+@if (course != null)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <img src="@course.ImageUrl" alt="Course Image" class="img-fluid rounded-top course-image" />
+                    <div class="card-body">
+                        <h4 class="card-title">@course.Name</h4>
+                        <p class="details-location">@course.Location</p>
+                        <p class="details-category">@course.Category</p>
+                        <p class="details-description">@course.Description</p>
+                        <p class="details-instructor"><strong>Instructor:</strong> @course.Instructor</p>
+                        <p class="details-price"><strong>Price:</strong> $@course.Price</p>
+                        <p class="details-dates"><strong>Dates:</strong> @course.StartDate.ToString("dd.MM.yyyy") - @course.EndDate.ToString("dd.MM.yyyy")</p>
+                        <p class="details-capacity"><strong>Capacity:</strong> @course.Capacity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p>No course found.</p>
+}
+
+@code {
+    private Course? course = null;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        course = await CourseService.GetCourseById(Id);
+    }
+}

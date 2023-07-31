@@ -1,12 +1,14 @@
 ﻿@page "/coursesPage"
-@inject HttpClient http
+@inject ICourseService CourseService
+
+<link href="/css/CourseStyles.css" rel="stylesheet" />
 
 <h3 style="text-align:center">Courses Page</h3>
 
 <div class="card-container">
-    @if (Courses != null && Courses.Any())
+    @if (CourseService.Courses != null && CourseService.Courses.Any())
     {
-        @foreach (var course in Courses.Take(9))
+        @foreach (var course in CourseService.Courses.Take(9))
         {
             <div class="card-wrapper">
                 <div class="card">
@@ -14,7 +16,7 @@
                     <div class="card-body">
                         <h5 class="card-title">@course.Name</h5>
                         <p class="card-text">@course.Description</p>
-                        <a href="#" class="btn btn-primary">Details</a>
+                        <a href="/course/@course.Id" class="btn btn-primary">Details</a>
                     </div>
                 </div>
             </div>
@@ -26,54 +28,10 @@
     }
 </div>
 
-<style>
-    .card-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-
-    .card-wrapper {
-        flex-basis: 32%;
-        margin-bottom: 20px;
-    }
-
-    .card {
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        overflow: hidden;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        height: 100%; 
-    }
-
-    .card-img-top {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-
-    .card-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-
-    .card-text {
-        margin-bottom: 10px;
-    }
-
-    .btn {
-        display: block;
-        width: 100%;
-    }
-</style>
-
 @code {
-    List<Course>? Courses = new List<Course>();
-
     protected override async Task OnInitializedAsync()
     {
-        Courses = await http.GetFromJsonAsync<List<Course>>("api/Courses");
+        await CourseService.GetCourses();
     }
 }
 

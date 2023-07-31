@@ -18,11 +18,23 @@
             <AuthorizeView>
                 <Authorized>
                     <NavLink class="nav-link" href="/coursesPage">
-                        <span class="oi oi-plus" aria-hidden="true"></span> Courses
+                        <span class="oi oi-list" aria-hidden="true"></span> Courses
                     </NavLink>
                 </Authorized>
                 <NotAuthorized>
                     <p style="color:white"> Log In to see all courses!</p>
+                </NotAuthorized>
+            </AuthorizeView>
+        </div>
+        <div class="nav-item px-3">
+            <AuthorizeView>
+                <Authorized>
+                    <NavLink class="nav-link" href="/authentication/profile">
+                        <span class="oi oi-person" aria-hidden="true"></span> Profile Page
+                    </NavLink>
+                </Authorized>
+                <NotAuthorized>
+                    <p style="color:white"> Log In to see your page!</p>
                 </NotAuthorized>
             </AuthorizeView>
         </div>
