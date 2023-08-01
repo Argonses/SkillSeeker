@@ -5,10 +5,19 @@
 
 <h3 style="text-align:center">Courses Page</h3>
 
+<div class="filter-container">
+    <label for="locationFilter">Location:</label>
+    <select id="locationFilter" @onchange="UpdateLocationFilter">
+        <option value="All">All</option>
+        <option value="Online">Online</option>
+        <option value="In-Person">In-Person</option>
+    </select>
+</div>
+
 <div class="card-container">
     @if (CourseService.Courses != null && CourseService.Courses.Any())
     {
-        @foreach (var course in CourseService.Courses.Take(9))
+        @foreach (var course in CourseService.Courses.Take(9).Where(course => selectedLocation == "All" || course.Location == selectedLocation))
         {
             <div class="card-wrapper">
                 <div class="card">
@@ -29,9 +38,15 @@
 </div>
 
 @code {
+    string selectedLocation = "All";
+
     protected override async Task OnInitializedAsync()
     {
         await CourseService.GetCourses();
     }
-}
 
+    private void UpdateLocationFilter(ChangeEventArgs e)
+    {
+        selectedLocation = e.Value.ToString();
+    }
+}
