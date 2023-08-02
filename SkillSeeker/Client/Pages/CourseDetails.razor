@@ -22,16 +22,37 @@
                         <p class="details-price"><strong>Price:</strong> $@course.Price</p>
                         <p class="details-dates"><strong>Dates:</strong> @course.StartDate.ToString("dd.MM.yyyy") - @course.EndDate.ToString("dd.MM.yyyy")</p>
                         <p class="details-capacity"><strong>Capacity:</strong> @course.Capacity</p>
-                       <a class="btn btn-primary" @onclick="JoinToCourse">Join!</a>
-                        @if (isItemAddedToCart)
-                        {
-                            <div class="alert alert-success success-message">
-                                <strong>Success!</strong> Joined to the course!
-                            </div>
-                        }
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <h4 class="mt-4">Registration Form</h4>
+                <form>
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" @bind="firstName" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" @bind="lastName" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" class="form-control" id="address" placeholder="Enter your address" @bind="address" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="birthdate">Date of Birth:</label>
+                        <input type="date" class="form-control" id="birthdate" @bind="birthdate" max="@DateTime.Today.ToString("yyyy-MM-dd")" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary" @onclick="JoinToCourse" disabled="@(!IsFormValid())">Submit</button>
+                </form>
+            </div>
+            @if (isItemAddedToCart)
+            {
+                <div class="alert alert-success success-message">
+                    <strong>Success!</strong> Joined to the course!
+                </div>
+            }
         </div>
     </div>
 }
@@ -45,6 +66,11 @@ else
     OrderedCourse order = new OrderedCourse();
     private bool isItemAddedToCart = false;
 
+    private string firstName = string.Empty;
+    private string lastName = string.Empty;
+    private string address = string.Empty;
+    private DateTime birthdate = DateTime.Now;
+
     [Parameter]
     public int Id { get; set; }
 
@@ -55,6 +81,11 @@ else
 
     private async Task JoinToCourse()
     {
+        if (!IsFormValid())
+        {
+            return;
+        }
+
         order.Name = course.Name;
         order.ImageUrl = course.ImageUrl;
         order.Category = course.Category;
@@ -67,4 +98,13 @@ else
 
         isItemAddedToCart = true;
     }
+
+    private bool IsFormValid()
+    {
+        return !string.IsNullOrWhiteSpace(firstName)
+            && !string.IsNullOrWhiteSpace(lastName)
+            && !string.IsNullOrWhiteSpace(address)
+            && birthdate != default;
+    }
 }
+
